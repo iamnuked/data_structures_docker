@@ -58,6 +58,7 @@ int main()
 	printf("2: Split the linked list into two linked lists, frontList and backList:\n");
 	printf("0: Quit:\n");
 
+	c = 1;
 	while (c != 0)
 	{
 	    printf("Please input your choice(1/2/0): ");
@@ -100,9 +101,52 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
-{
+void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList) {
 	/* add your code here */
+	// 리스트 길이가 홀수일 경우 앞쪽 리스트가 더 많게
+	// step1, step2로 나눠서 중간 값 구하면 자동으로 위 조건 성립(리트코드 머지정렬처럼)
+
+	// 사실 원본 리스트에 size가 있기 때문에 그냥 size 반 나눠서 순회하는 방법으로 해도됨
+
+	if(ll->head == NULL) {
+		return;
+	}
+
+	ListNode *step1, *step2;
+	step1 = ll->head;
+	step2 = ll->head;
+
+	int size = ll->size;
+	int count = 0;
+
+
+	if(size % 2) { //길이가 홀수
+		while(step2->next != NULL) {
+			step1 = step1->next;
+			step2 = step2->next->next;
+			count++;
+		}
+		// 결과리스트 사이즈
+		resultFrontList->size = count+1;
+		resultBackList->size = count;
+	} else { // 짝수
+		while(step2->next->next != NULL) {
+			step1 = step1->next;
+			step2 = step2->next->next;
+			count++;
+		}
+		// 결과리스트 사이즈
+		resultFrontList->size = count+1;
+		resultBackList->size = count+1;
+	}
+	
+	// 선정리
+	resultFrontList->head = ll->head;
+	resultBackList->head = step1->next;
+	step1->next = NULL;
+	ll->head = NULL;
+
+	return;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

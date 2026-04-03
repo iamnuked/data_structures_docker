@@ -101,9 +101,42 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
-{
+// 완
+
+void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2) {
     /* add your code here */
+	ListNode *preMain, *preSub, *curMain, *curSub;
+	LinkedList *temp; // 작업끝나고 리스트 삭제용
+
+	if(ll1->size >= ll2->size) { // 리스트 길이 비교해서 큰 리스트를 main으로 작은 리스트를 sub로
+		curMain = ll1->head;
+		curSub = ll2->head;
+		temp = ll2;
+
+	} else {
+		curMain = ll2->head;
+		curSub = ll1->head;
+		temp = ll1;
+	}
+
+	while(curSub != NULL) { // 작은 리스트 끝 노드 도달했을 경우 탈출
+		preMain = curMain;
+		curMain = curMain->next;
+
+		preSub = curSub;
+		curSub = curSub->next;
+
+		preMain->next = preSub;
+		preSub->next = curMain;
+
+	}
+
+	// 작은 리스트 마지막 노드 삽입 작업
+	preSub->next = curMain;
+	preMain->next = preSub;
+
+	// 작은 리스트 삭제 관련(작은 리스트의 노드를 큰 쪽에 연결했기 때문에 따로 free작업 할 필요 없을 듯? -> 원본 작은 리스트 껍데기는 free해야되나?
+	temp->head = NULL;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

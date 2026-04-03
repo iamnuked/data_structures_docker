@@ -88,9 +88,40 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-int insertSortedLL(LinkedList *ll, int item)
-{
+// 완성
+
+int insertSortedLL(LinkedList *ll, int item) {
 	/* add your code here */
+	int idx = 0;
+	ListNode *pre, *cur;
+	cur = ll->head;
+
+	// 리스트가 비어있을 경우 삽입
+	if(cur == NULL) {
+		insertNode(ll, idx, item);
+		return idx;
+	}
+
+	// item 비교 -> 이전과 현재 노드 둘 다 기록해야 됨 -> 고려 요소, 첫 번째 삽입, 중간 삽입, 마지막 삽입 -> 다음 노드보다 작으면 무조건 삽입하면 되는거 같은데
+	// 결론 순회하면서 다음 노드보다 값 작으면 삽입
+	while(cur != NULL) { // 중복 값일 경우
+		if (item == cur->item) {
+			return -1;
+		}
+
+		if(item < cur->item) { // 다음 값만 비교해서 삽입
+			insertNode(ll, idx, item);
+			return idx;
+		}
+
+		pre = cur;
+		cur = cur->next;
+		idx++;
+	}
+
+	insertNode(ll, idx, item);
+	
+	return idx;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -170,7 +201,7 @@ int insertNode(LinkedList *ll, int index, int value){
 
 	// Find the nodes before and at the target position
 	// Create a new node and reconnect the links
-	if ((pre = findNode(ll, index - 1)) != NULL){
+	if ((pre = findNode(ll, index - 1)) != NULL){ // 이전 노드가 없지 않으면(맨 처음이 아니면)
 		cur = pre->next;
 		pre->next = malloc(sizeof(ListNode));
 		pre->next->item = value;

@@ -84,9 +84,36 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void moveEvenItemsToBack(LinkedList *ll)
-{
+void moveEvenItemsToBack(LinkedList *ll) {
 	/* add your code here */
+	ListNode *pre, *cur, *last;
+	cur = ll->head;
+
+	if(ll->head == NULL) {
+		return;
+	}
+
+	last = findNode(ll, (ll->size) - 1);
+
+	while(cur->next != last->next) {
+		if(cur->item % 2) { // 홀수인 경우
+			pre = cur;
+			cur = cur->next;
+
+		} else { // 짝수인 경우
+			if(cur == ll->head) { // head가 홀수인 경우 head가 꼬이는 현상 방지
+				ll->head = cur->next;
+			}
+
+			// 연결선 정리
+			pre->next = cur->next;
+			cur->next = last->next;
+			last->next = cur;
+		
+			// 다음
+			cur = pre->next;
+		}
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
