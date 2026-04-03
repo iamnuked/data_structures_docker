@@ -1,0 +1,26 @@
+# OS metadata
+.DS_Store
+.DS_store
+**/.DS_Store
+**/.DS_store
+
+# Editor settings
+.vscode/
+**/.vscode/
+
+# C build artifacts
+*.o
+*.obj
+*.out
+*.exe
+*.app
+*.dSYM/
+*.so
+*.a
+*.dll
+*.dylib
+a.out
+
+# Project-specific compiled binaries (no extension)
+Data-Structures/playground
+Data-Structures/Linked_List/Q*_A_LL
