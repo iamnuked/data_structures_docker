@@ -85,19 +85,16 @@ int main()
 
 ////////////////////////////////////////////////////////////////////////
 
-void RecursiveReverse(ListNode **ptrHead)
-{
+void RecursiveReverse(ListNode **ptrHead) {
 	/* add your code here */
 
-	// 베이스 케이스
-	if((*ptrHead)->next == NULL) {
+	// 베이스 케이스 or 빈 리스트인 경우
+	if((*ptrHead)->next == NULL || *ptrHead == NULL) {
 		return;
 	}
 
-
 	ListNode *cur = *ptrHead;
 	ListNode *rest = cur->next; 
-
 
 	RecursiveReverse(&rest);
 
@@ -105,7 +102,6 @@ void RecursiveReverse(ListNode **ptrHead)
 	cur->next = NULL;
 
 	*ptrHead = rest;
-
 }
 
 //////////////////////////////////////////////////////////////////////////////////
