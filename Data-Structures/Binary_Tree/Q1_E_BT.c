@@ -41,6 +41,8 @@ BTNode* pop(Stack *stk);
 void printTree(BTNode *node);
 void removeAll(BTNode **node);
 
+void preorder(BTNode *tree);
+
 ///////////////////////////// main() /////////////////////////////////////////////
 
 int main()
@@ -113,15 +115,36 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-int identical(BTNode *tree1, BTNode *tree2)
+int identical(BTNode *tree1, BTNode *tree2) {
+    /* add your code here */
+    
+    if(tree1 == NULL && tree2 == NULL) { // 널 만났을 경우
+        return 1;
+    } else if(tree1 == NULL) {
+        return 0;
+    } else if(tree2 == NULL) {
+        return 0;
+    }
+    
+    int result_left = 1;
+    int result_right = 1;
 
-{
-   /* add your code here */
+    if(tree1->item != tree2->item) {
+        return 0;
+    }
+    
+    result_left = identical(tree1->left, tree2->left);
+    result_right = identical(tree1->right, tree2->right);
+
+    if(result_left && result_right) {
+        return 1;
+    }
+    return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 
-BTNode *createBTNode(int item){
+BTNode *createBTNode(int item) {
     BTNode *newNode = malloc(sizeof(BTNode));
     newNode->item = item;
     newNode->left = NULL;

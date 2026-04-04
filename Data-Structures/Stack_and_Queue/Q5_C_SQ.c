@@ -109,19 +109,16 @@ int main()
 
 void recursiveReverse(Queue *q) {
 	/* add your code here */
-	
-
-
+	int temp;
 	// 베이스 케이스
-	if(q->ll.head->next == NULL) {
+	if(q->ll.head == NULL) {
 		return;
 	}
-
-	// 스위칭
 	
-
-
-
+	temp = dequeue(q);
+	recursiveReverse(q);
+	enqueue(q, temp);
+	return;
 }
 
 //////////////////////////////////////////////////////////////////
