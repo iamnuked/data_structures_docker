@@ -114,14 +114,60 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void createQueueFromLinkedList(LinkedList *ll, Queue *q)
-{
+void createQueueFromLinkedList(LinkedList *ll, Queue *q) {
 	/* add your code here */
+	if(!isEmptyQueue(q)) {
+		removeAllItemsFromQueue(q);
+	}
+
+	if(ll == NULL) {
+		return;
+	}
+
+	for(ListNode* node = ll->head; node != NULL; node = node->next) {
+		enqueue(q, node->item);
+	}
+	return;
 }
 
-void removeOddValues(Queue *q)
-{
+void removeOddValues(Queue *q) {
 	/* add your code here */
+	LinkedList *ll = &(q->ll);
+	ListNode *cur, *pre;
+	int idx = 0;
+	cur = ll->head;
+
+
+	while(cur != NULL) {
+		if(cur->item % 2) { // 홀수일 때
+			ListNode *del; // 삭제 노드
+
+			if(cur == ll->head) { // 첫번째인 경우
+				del = cur;
+				ll->head = cur->next;
+				cur = cur->next;
+				free(del);
+				ll->size--;
+
+			} else if(cur->next == NULL) { // 마지막인 경우
+				pre->next = NULL; // free전에 이전 노드 NULL할당 해야됨
+				free(cur);
+				ll->size--;
+			} else { // 중간인 경우
+				del = cur;
+				pre->next = cur->next;
+				cur = cur->next;
+				free(del);
+				ll->size--;
+			}
+
+		} else { // 짝수일 때
+			pre = cur;
+			cur = cur->next;
+		}
+	}
+
+	return;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

@@ -110,9 +110,21 @@ int main()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-void reverse(Queue *q)
-{
-/* add your code here */
+void reverse(Queue *q) {
+	/* add your code here */
+	Stack s;
+	s.ll.head = NULL; // 스택 초기화
+	s.ll.size = 0;
+	s.ll.tail = NULL;
+
+	while((&(q->ll))->head != NULL) {
+		push(&s, dequeue(q));
+	}
+	while(s.ll.head != NULL) {
+		enqueue(q, pop(&s));
+	}
+
+	return;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

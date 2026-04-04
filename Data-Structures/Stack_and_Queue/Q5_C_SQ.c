@@ -107,9 +107,17 @@ int main()
 
 ////////////////////////////////////////////////////////////
 
-void recursiveReverse(Queue *q)
-{
-/* add your code here */
+void recursiveReverse(Queue *q) {
+	/* add your code here */
+	
+	// 베이스 케이스
+
+
+	// 스위칭
+	
+
+
+
 }
 
 //////////////////////////////////////////////////////////////////

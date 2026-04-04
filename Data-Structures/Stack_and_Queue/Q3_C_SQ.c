@@ -101,9 +101,25 @@ int main()
 
 /////////////////////////////////////////////////////////////////////////////////
 
-int isStackPairwiseConsecutive(Stack *s)
-{
-  /* add your code here */
+int isStackPairwiseConsecutive(Stack *s) {
+	/* add your code here */
+	LinkedList* ll = &(s->ll);
+	
+	if(ll->size % 2) { // 홀수인 경우 0 리턴
+		return 0;
+	}
+
+	while(ll->size != 0) {
+		int item1 = pop(s);
+		int item2 = pop(s);
+		if(item2-item1 == 1) {
+			continue;
+		} else {
+			return 0;
+		}
+	}
+		
+	return 1;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
