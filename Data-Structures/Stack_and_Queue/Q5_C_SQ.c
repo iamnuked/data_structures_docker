@@ -110,8 +110,12 @@ int main()
 void recursiveReverse(Queue *q) {
 	/* add your code here */
 	
-	// 베이스 케이스
 
+
+	// 베이스 케이스
+	if(q->ll.head->next == NULL) {
+		return;
+	}
 
 	// 스위칭
 	
