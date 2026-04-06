@@ -100,9 +100,16 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-int smallestValue(BTNode *node)
-{
+int smallestValue(BTNode *node) {
 	/* add your code here */
+    if(node == NULL) return __INT_MAX__;
+
+
+    int l_min = smallestValue(node->left);
+    int r_min = smallestValue(node->right);
+    int min = (l_min < r_min) ? l_min : r_min; // 왼쪽 오른쪽 비교
+
+    return (min < node->item) ? min : node->item; // 현재, 완오 최소값 비교
 }
 
 //////////////////////////////////////////////////////////////////////////////////
