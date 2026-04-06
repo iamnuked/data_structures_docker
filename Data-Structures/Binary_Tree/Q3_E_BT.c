@@ -100,18 +100,17 @@ int main()
 
 int countOneChildNodes(BTNode *node) {
     /* add your code here */
-    if(node == NULL) {
-        return 0;
-    }
+    if(node == NULL) return 0;
+
+    int count = 0;
+    
+    if(node->left == NULL && node->right != NULL) count = 1;
+    else if (node->left != NULL && node->right == NULL) count = 1;
 
     int l_result = countOneChildNodes(node->left);
     int r_result = countOneChildNodes(node->right);
-
-    if(l_result == 0 || r_result == 0) {
-        return l_result + r_result + 1;
-    }
     
-    return l_result + r_result;
+    return l_result + r_result + count;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
