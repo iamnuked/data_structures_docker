@@ -89,16 +89,18 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void postOrderIterativeS2(BSTNode *root)
-{
-	 /* add your code here */
+void postOrderIterativeS2(BSTNode *root) {
+	/* add your code here */
+
+
 }
 
 /* Given a binary search tree and a key, this function
    deletes the key and returns the new root. Make recursive function. */
-BSTNode* removeNodeFromTree(BSTNode *root, int value)
-{
+BSTNode* removeNodeFromTree(BSTNode *root, int value) {
 	/* add your code here */
+	
+
 }
 ///////////////////////////////////////////////////////////////////////////////
 

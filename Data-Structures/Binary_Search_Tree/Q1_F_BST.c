@@ -75,6 +75,7 @@ int main()
 			printf("The resulting level-order traversal of the binary search tree is: ");
 			levelOrderTraversal(root); // You need to code this function
 			printf("\n");
+			removeAll(&root); // 추가 작성
 			break;
 		case 0:
 			removeAll(&root);
@@ -91,10 +92,23 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void levelOrderTraversal(BSTNode* root)
-{
-
+void levelOrderTraversal(BSTNode* root) {
     /* add your code here */
+	if(root == NULL) return;
+
+	Queue q;
+	q.head = NULL;
+	q.tail = NULL;
+
+	enqueue(&(q.head), &(q.tail), root);
+	while(q.head != NULL) {
+		BSTNode* node = dequeue(&(q.head), &(q.tail));
+		printf("%d ", node->item);
+		if(node->left != NULL) enqueue(&(q.head), &(q.tail), node->left);
+		if(node->right != NULL) enqueue(&(q.head), &(q.tail), node->right);
+	}
+
+	return;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
