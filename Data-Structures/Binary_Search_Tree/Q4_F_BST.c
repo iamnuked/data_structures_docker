@@ -94,21 +94,24 @@ void postOrderIterativeS1(BSTNode *root) {
 	Stack s;
 	s.top = 0;
 	
-	push(&s, root);
 	BSTNode* node = root;
-	while(s.top != 0) {
-		while(node->left != NULL) {
-			push(&s, node->left);
+	BSTNode* curr;
+	BSTNode* lastVisited = NULL;
+	
+	do {
+		while(node != NULL) {
+			push(&s, node);
 			node = node->left;
 		}
-		while(node->right != NULL) {
-			push(&s, node->right);
-			node = node->right;
+		curr = peek(&s);
+		if(curr->right && lastVisited != curr->right) {
+			node = curr->right;
+		} else {
+			lastVisited = pop(&s);
+			printf("%d ", lastVisited->item);
+			node = NULL;
 		}
-		node = pop(&s);
-		printf("%d ", node->item); 
-	}
-
+	} while(!isEmpty(&s) || node != NULL);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
