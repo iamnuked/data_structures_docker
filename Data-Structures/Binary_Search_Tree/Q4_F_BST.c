@@ -96,7 +96,7 @@ void postOrderIterativeS1(BSTNode *root) {
 	
 	BSTNode* node = root;
 	BSTNode* curr;
-	BSTNode* lastVisited = NULL;
+	BSTNode* lastVisited = NULL; // 마지막 방문(pop) 노드
 	
 	do {
 		while(node != NULL) {
@@ -104,9 +104,9 @@ void postOrderIterativeS1(BSTNode *root) {
 			node = node->left;
 		}
 		curr = peek(&s);
-		if(curr->right && lastVisited != curr->right) {
+		if(curr->right && lastVisited != curr->right) { // 오른쪽 노드가 존재하고 오른쪽 방문 안했을 때 오른쪽으로 이동
 			node = curr->right;
-		} else {
+		} else { // 
 			lastVisited = pop(&s);
 			printf("%d ", lastVisited->item);
 			node = NULL;
